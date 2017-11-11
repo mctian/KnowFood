@@ -47,7 +47,7 @@ def output_csv_menu(list, start, end, name):
             vegan.append(list[i-1])
         elif list[i] == 'pork':
             pork.append(list[i-1])
-        elif list[i] == '':
+        elif list[i] == '' and not list[i-1] == 'Dinner' and not list[i-1] =='Lunch':
             other.append(list[i-1])
     df1 = pd.DataFrame({'Other': other})
     df2 = pd.DataFrame({'Vegan': vegan})
