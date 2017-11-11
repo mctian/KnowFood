@@ -1,24 +1,51 @@
 from html.parser import HTMLParser
 import pandas as pd
 import requests
+import math
+import datetime
+import json
 
+
+def retrieve_menus():
+    today = datetime.datetime.now()
+    today_formatted = str(today.month) + '/' + str(today.day) + '/' + str(today.year)
+    url = 'https://tigermenus.herokuapp.com/api/' + today_formatted
+    text = requests.get(url)
+    text = text.json()
+    print(text)
+
+    return
 
 def retrieve_nutrition_html():
     url = 'https://diningmenu.princeton.edu/getnutrition.php?nutrition=' + str(100001).zfill(6)
     text = requests.get(url).text
     text = strip_tags(text)
     text = ''.join(text.split())
-    df = pd.DataFrame(columns=['Label', 'Serving Size', 'Calories', 'Fat', 'Cholesterol', 'Sodium', 'Carbs', 'Protein'])
     df = parse_data(text)
-    for i in range(100001, 100050):
+    i = 100001
+    while i in range(100001, 1000000):
+        print(i)
         url = 'https://diningmenu.princeton.edu/getnutrition.php?nutrition=' + str(i).zfill(6)
         text = requests.get(url).text
         text = strip_tags(text)
         text = ''.join(text.split())
         if not text.startswith('NutritionLabelNutritional'):
-            df = pd.merge(df, parse_data(text), how='outer')
+            df2 = parse_data(text)
+            if not df2.at[len(df2)-1, 'Serving Size'] == '---':
+                df = pd.merge(df, df2, how='outer')
+                i += 1
+            else:
+                if i % 1000 == 0:
+                    i += 1
+                else:
+                    i = int(math.ceil(i / 1000.0)) * 1000
+        elif i % 1000 == 0:
+            i += 1
+        else:
+            i = int(math.ceil(i / 1000.0)) * 1000
     df.to_csv('out.csv', sep=',')
     print(df)
+
 
 def parse_data(text):
     start_list = ['Label', 'Size', 'Calories', 'TotalFat', 'Cholesterol', 'Sodium', 'Carb.', 'Protein']
@@ -29,7 +56,7 @@ def parse_data(text):
         try:
             row.append((text.split(start_list[i]))[1].split(end_list[i])[0])
         except IndexError:
-            row.append('NaN')
+            row.append('')
     df.loc[0] = row
     return df
 
@@ -54,5 +81,6 @@ def strip_tags(html):
 
 
 retrieve_nutrition_html()
+retrieve_menus()
 
 
