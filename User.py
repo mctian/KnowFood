@@ -2,7 +2,7 @@ import pandas as pd
 import csv
 
 
-class user:
+class User:
     def __init__(self, index, file):
         with open(file, 'rb') as csvfile:
             info = csv.reader(csvfile)
@@ -14,6 +14,7 @@ class user:
         self.vegetarian = info.iloc[index]['Vegetarian']
         self.vegan = info.iloc[index]['Vegan']
         self.canEatPork = info.iloc[index]['Pork']
+        self.diningHall = 'Roma'
 
     def returnName(self):
         return self.name
@@ -32,3 +33,9 @@ class user:
 
     def returnRestrictions(self):
         return [self.vegetarian, self.vegan, self.canEatPork]
+
+    def returnDiningHall(self):
+        return self.diningHall
+
+    def changeDiningHall(self, dh):
+        self.diningHall = dh
