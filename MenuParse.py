@@ -14,7 +14,6 @@ def retrieve_menus():
     data = data.replace('"legend"', "")
     data = data.replace('"item"', "")
     data = data.replace('"label"', "")
-    print(data)
     dinIndex = []
     lunIndex = []
     matches = re.findall(r'"([A-Za-z0-9_&\'\./\\]*)"', data)

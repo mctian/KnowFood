@@ -2,19 +2,7 @@ from html.parser import HTMLParser
 import pandas as pd
 import requests
 import math
-import datetime
-import json
 
-
-def retrieve_menus():
-    today = datetime.datetime.now()
-    today_formatted = str(today.month) + '/' + str(today.day) + '/' + str(today.year)
-    url = 'https://tigermenus.herokuapp.com/api/' + today_formatted
-    text = requests.get(url)
-    text = text.json()
-    print(text)
-
-    return
 
 def retrieve_nutrition_html():
     url = 'https://diningmenu.princeton.edu/getnutrition.php?nutrition=' + str(100001).zfill(6)
@@ -81,6 +69,4 @@ def strip_tags(html):
 
 
 retrieve_nutrition_html()
-retrieve_menus()
-
 
