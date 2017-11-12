@@ -15,8 +15,8 @@ ask = Ask(app, "/")
 #def setCalories(height, weight, age, activity, gender):
 #    global calories
 
-height = 420
-weight = 800
+height = 160
+weight = 80
 gender = "Male"
 age = 18
 activity = 3
@@ -34,12 +34,32 @@ tCarbs = 320 * calories / 2000
 tProtein = 0.8 * weight / 3
 tMatrix = np.array([tFat, tCholesterol, tSodium, tCarbs, tProtein])
 
-#def clarify(loc):
-#    CJL = ["see jay L", "see jay l", "see jay el", "cjl", "the center for Jewish life", "center for Jewish life"]
-#    butlerwilson = ["butler wilson, "]
-#    roma = ["rockymattie dining hall", "rockymattie", "rocky Maddy", ""]
-#    whitman = []
-#    return location
+def clarify(loc):
+    CJL = ["see jay L", "see jay l", "see jay el", "cjl", "the center for Jewish life", "center for Jewish life"]
+    wilcox = ["butler wilson", "will"]
+    whitman = ["whitman"]
+    forbes = ["forbes", "Forbes dining hall"]
+    roma = ["rockymattie dining hall", "rockymattie", "rocky Maddy", "rockymatty"]
+    for i in range(0,len(CJL)):
+        if loc == CJL[i]:
+            return 'CJL'
+
+    for i in range(0,len(wilcox)):
+        if loc == CJL[i]:
+            return 'Wilcox'
+
+    for i in range(0,len(whitman)):
+        if loc == whitman[i]:
+            return 'Whitman'
+
+    for i in range(0,len(forbes)):
+        if loc == forbes[i]:
+            return 'Forbes'
+
+    for i in range(0,len(roma)):
+        if loc == roma[i]:
+            return 'Roma'
+    return loc
 
 # Optional
 @app.route('/')
@@ -51,7 +71,6 @@ def start_skill():
     start_message = 'welcome to know food. would you like to know what to eat today?'
     return question(start_message)
 
-@ask.intent("YesIntent")
 @ask.intent("RequestMealPlan")
 def suggested_meal(location, meal):
     #data = pd.read_csv("/Users/nicolelin/Documents/GitHub/KnowFood/" + str(location) + str(meal) + ".csv", encoding = 'latin-1')
@@ -65,7 +84,7 @@ def suggested_meal(location, meal):
     #loc = clarify(location)
 
     data = pd.read_csv("/Users/nicolelin/Documents/GitHub/KnowFood/out.csv", encoding='latin-1')
-    filt = pd.read_csv("/Users/nicolelin/Documents/GitHub/KnowFood/" + location + meal + ".csv", encoding='latin-1')
+    filt = pd.read_csv("/Users/nicolelin/Documents/GitHub/KnowFood/" + clarify(location) + meal + ".csv", encoding='latin-1')
     #filt = pd.read_csv("/Users/nicolelin/Documents/GitHub/KnowFood/" + str(location) + str(meal) + ".csv", encoding='latin-1')
     # dietaryFilter
     try:
@@ -176,6 +195,8 @@ def suggested_meal(location, meal):
     suggestion_message = f'to meet your daily nutritional needs, you should eat {filler1}, {filler2}, {filler3}, and {filler4} for {meal} at {location}'
     return question(suggestion_message)
 
+@ask.intent("YesIntent")
+#suggested_meal(location, meal)
 
 @ask.intent("NoIntent")
 def no_intent():
