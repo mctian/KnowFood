@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="data:image/webp;base64,UklGRloEAABXRUJQVlA4TE0EAAAvh8AfEIcgEEjy1xh2hcGbVoFACje4RA0GA5Yku3EbcBHFne/+17UIECST74j+TwApm1gs/QddB+J/wA0AYSufak3+PqYBgGHEmrQyPsN1KgBkmkcAXidiGi4T8etnZgCIKhZMexWP307zFwC8SubUm5j+ERj9x80eNNngwF8k4XeYWcAvzTvwSDzY9R4en5nm9afOHIAkiTzYa/QvN7P4zbMEoEqKIN0i4rPRPH+8s7qiCsYl7Ph6Z2Z8+BkAdMkQ4LlDxredBXzS9PmBBNJyBYvvTvP60WZpB9gb5EmaWXymWf/pAiOLF7CYhtn7FSYWv1XgZf0CaeZn7ctNwh7w540ZTR0+B03zJvm4AFn6KrPxUdSGOa3IzPiKE4fPqIZwmIEs4NtP0jb1sMAxH2ZM7KR/PXqwZ2VO/EiY0rfHt98gntU5CEQUICoTK7BL+lEW/F47RA5Tki6BO8kLhOajTvoW+aSoEX9eTOsW41LI3kfMk2gsQTioqghfUV1T/gK/B8wfYDZ57zdIHBe1+5Vd4K73yt5V6Zi4jZX5Vf2Yd5dG2+A5xe3yLrDL8inUNzELaBnMKWmPTDuFU+wedklb1k6htEOmpXUZ7Cmm6w27WTqFnF6ktWldP4aCVqPFcR2eYygMlWH3K+eQawrD0eqgAHMO0TtWDUfLvcZ7Epk4lhRDR/SjiPqC6knTacAfZSHs5bWkrJKPemcPWUdbqsCc1Ga0bVd5D7KY1n2qSj8ozOId8JxTZn6fqFOOMZjTJWBPCbO6kVdKp5RZ3MgpjVMw9xuREsIZD4N27krtjDyrWxUluCPGLG0VtfIJD+bPVl5rmAMyw2xFWggH9FmjvatW289hnjeLWnDbJUbYzKnl7TrDbkZda5jNHOaDdk9aCJslRtnOqrXNOiNuR1ULbisLpt8vqKWtXg4d2LXGVo3RTvBaCBtZMPMJVLTqRi8nHGGGEuw+jeOOIK+VtrHg0qFBqW/zcuopFHTw7NI46RhylVOCJV9ZZRMLbjiHyOcOYJRg6PPlwO7xsuxJCzvn3aNxBl01cPoWFtx6F8uB3+FlxbtQ4+QdGuu5TOLA6Fmw7WUC69V7WYMu61hdr7PKbWhw4LUc2PE6hZW1Es9f52XBKHWeuY7jvToe7E735XWdzCsXqix4lcGLF4q8rPGA7y/keTAKWWAuRIK4zoDf6caV19cFQb5S5OFZVgTvlbygrjIQ+iuRAHZRkNCdiyAvKoJ2qVcwzJohyJdyAoQlD4TxUjQEfUmW+FtlAfyKLjG3CpKywEHY6dZGAit7JeVa1CRJViTxXlEyZEPi7+UkCBIHKV28S5rklbSbZQm8oEjSzR5RFnRJuBkNCQwPUnu1JAosL2l0dScqGuluVCXQcJfzIreu0e2rxK8L13MKxOt0/6jQWOEPoMIaxH45lf5CUziRR23WzJ9AFMckk9DUr2Lor7SxAeiR5E+sJVr6uwEA">
+
+    <title>Submit a Meal</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./bootstrap/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./bootstrap/starter-template.css" rel="stylesheet">
+	
+	
+	<script type="text/javascript">
+		var formIndex =1;
+		function extendForm(){
+			
+			var addBefore = document.getElementById("button-row");
+			// need to insert a new thing after html
+			var newMenu = 	"<div class=\"row\">" + 
+								"<div class=\"col-lg-8\">" + 
+									"<div class=\"form-group\" style=\"text-align:left\">"+
+										"<label for=\"inputFood" + formIndex + "\">Food Name</label>" +
+										"<input type=\"text\" class=\"form-control\" id=\"inputFood" + formIndex + "\" placeholder=\"Ex: Roasted Vegetables\">" +
+									"</div>" +
+								"</div>" +
+								"<div class=\"col-lg-4\">" +
+									"<div class=\"form-group\" style=\"text-align:left\">" +
+										"<label for=\"inputServing" + formIndex + "\">Servings</label>" +
+										"<input type=\"text\" class=\"form-control\" id=\"inputServing" + formIndex + "\" placeholder=\"Ex: 10\">" + 
+									"</div>" +
+								"</div>" +
+							"</div>";
+			formIndex++;
+			addBefore.insertAdjacentHTML('beforebegin', newMenu);
+		}
+		
+	</script>
+	
+	<style>
+	.knowfood{
+		text-align:center;
+	}
+	</style>
+  </head>
+
+  <body>
+    <main role="main" class="container">
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+		  <a class="navbar-brand" href="home.html">KnowFood</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		  </button>
+
+		  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+			<ul class="navbar-nav mr-auto">
+			  <li class="nav-item">
+				<a class="nav-link" href="home.html">Home</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="profile.html">Profile</a>
+			  </li>
+			  <li class="nav-item active">
+				<a class="nav-link" href="mealform.html">Submit a Meal! <span class="sr-only">(current)</span></a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="prevmeal.html">Previous Meals</a>
+			  </li>
+			</ul>
+			<a class="btn btn-outline-success" href="signup.html" role="button">Log Out</a>
+		  </div>
+		</nav>
+      <div class="knowfood">
+        <h1>KNOWFOOD</h1>
+        <p class="lead">Know the food you will eat.<br> No food wasted.</p><hr>
+      </div>
+		<div class="row knowfood">
+			<div class="col-lg-10">
+				<h3>Enter Your Last Meal</h3>
+				<div class="row">
+					<div class="col-lg-8">
+						<div class="form-group" style="text-align:left">
+							<label for="inputFood0">Food Name</label>
+							<input type="text" class="form-control" id="inputFood0" placeholder="Ex: Roasted Vegetables">
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="form-group" style="text-align:left">
+							<label for="inputServing0">Servings</label>
+							<input type="text" class="form-control" id="inputServing0" placeholder="Ex: 10">
+						</div>
+					</div>
+				</div>
+				<div class="row" id="button-row">
+					<div class="col-lg-8" style="text-align:left">
+						<button class="btn btn-primary" onclick="extendForm()">Add a Dish</button>
+					</div>
+					<div class="col-lg-4" style="text-align:right">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<h4>Links</h4>
+				<a class="btn btn-primary btn-block" href="profile.html" role="button">Your Profile</a><p></p>
+				<a class="btn btn-primary btn-block" href="mealform.html" role="button">Submit a Meal!</a>
+			</div>
+		</div>
+		<div class="row"><p></p></div>
+    </main><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./Starter Template for Bootstrap_files/jquery-3.2.1.slim.min.js.download" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="./Starter Template for Bootstrap_files/popper.min.js.download"></script>
+    <script src="./Starter Template for Bootstrap_files/bootstrap.min.js.download"></script>
+  
+
+<div id="naptha_container0932014_0707"></div></body></html>	
