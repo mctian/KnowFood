@@ -33,6 +33,7 @@ if(isset($_POST["submit"]))
 			$error .= '<p><label class="text-danger">Only letters and white space allowed</label></p>';
 		}
 	}
+	
 	if(empty($_POST["email"]))
 	{
 		$error .= '<p><label class="text-danger">Please Enter your Email</label></p>';
@@ -55,6 +56,7 @@ if(isset($_POST["submit"]))
 	{
 		$age = clean_text($_POST["age"]);
 	}
+	
 	if(empty($_POST["height"]))
 	{
 		$error .= '<p><label class="text-danger">Height is required</label></p>';
@@ -63,6 +65,7 @@ if(isset($_POST["submit"]))
 	{
 		$height = ((int)clean_text($_POST["height"])) * 2.54;
 	}
+	
 	if(empty($_POST["weight"]))
 	{
 		$error .= '<p><label class="text-danger">Weight is required</label></p>';
@@ -120,7 +123,9 @@ if(isset($_POST["submit"]))
     <link rel="icon" href="data:image/webp;base64,UklGRloEAABXRUJQVlA4TE0EAAAvh8AfEIcgEEjy1xh2hcGbVoFACje4RA0GA5Yku3EbcBHFne/+17UIECST74j+TwApm1gs/QddB+J/wA0AYSufak3+PqYBgGHEmrQyPsN1KgBkmkcAXidiGi4T8etnZgCIKhZMexWP307zFwC8SubUm5j+ERj9x80eNNngwF8k4XeYWcAvzTvwSDzY9R4en5nm9afOHIAkiTzYa/QvN7P4zbMEoEqKIN0i4rPRPH+8s7qiCsYl7Ph6Z2Z8+BkAdMkQ4LlDxredBXzS9PmBBNJyBYvvTvP60WZpB9gb5EmaWXymWf/pAiOLF7CYhtn7FSYWv1XgZf0CaeZn7ctNwh7w540ZTR0+B03zJvm4AFn6KrPxUdSGOa3IzPiKE4fPqIZwmIEs4NtP0jb1sMAxH2ZM7KR/PXqwZ2VO/EiY0rfHt98gntU5CEQUICoTK7BL+lEW/F47RA5Tki6BO8kLhOajTvoW+aSoEX9eTOsW41LI3kfMk2gsQTioqghfUV1T/gK/B8wfYDZ57zdIHBe1+5Vd4K73yt5V6Zi4jZX5Vf2Yd5dG2+A5xe3yLrDL8inUNzELaBnMKWmPTDuFU+wedklb1k6htEOmpXUZ7Cmm6w27WTqFnF6ktWldP4aCVqPFcR2eYygMlWH3K+eQawrD0eqgAHMO0TtWDUfLvcZ7Epk4lhRDR/SjiPqC6knTacAfZSHs5bWkrJKPemcPWUdbqsCc1Ga0bVd5D7KY1n2qSj8ozOId8JxTZn6fqFOOMZjTJWBPCbO6kVdKp5RZ3MgpjVMw9xuREsIZD4N27krtjDyrWxUluCPGLG0VtfIJD+bPVl5rmAMyw2xFWggH9FmjvatW289hnjeLWnDbJUbYzKnl7TrDbkZda5jNHOaDdk9aCJslRtnOqrXNOiNuR1ULbisLpt8vqKWtXg4d2LXGVo3RTvBaCBtZMPMJVLTqRi8nHGGGEuw+jeOOIK+VtrHg0qFBqW/zcuopFHTw7NI46RhylVOCJV9ZZRMLbjiHyOcOYJRg6PPlwO7xsuxJCzvn3aNxBl01cPoWFtx6F8uB3+FlxbtQ4+QdGuu5TOLA6Fmw7WUC69V7WYMu61hdr7PKbWhw4LUc2PE6hZW1Es9f52XBKHWeuY7jvToe7E735XWdzCsXqix4lcGLF4q8rPGA7y/keTAKWWAuRIK4zoDf6caV19cFQb5S5OFZVgTvlbygrjIQ+iuRAHZRkNCdiyAvKoJ2qVcwzJohyJdyAoQlD4TxUjQEfUmW+FtlAfyKLjG3CpKywEHY6dZGAit7JeVa1CRJViTxXlEyZEPi7+UkCBIHKV28S5rklbSbZQm8oEjSzR5RFnRJuBkNCQwPUnu1JAosL2l0dScqGuluVCXQcJfzIreu0e2rxK8L13MKxOt0/6jQWOEPoMIaxH45lf5CUziRR23WzJ9AFMckk9DUr2Lor7SxAeiR5E+sJVr6uwEA">
 
     <title>Signup</title>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="./bootstrap/bootstrap.min.css" rel="stylesheet">
 
@@ -159,16 +164,16 @@ if(isset($_POST["submit"]))
 			  
 			  <div class="form-group" style="text-align:left">
 				<label for="inputEmail">Email address</label>
-				<input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email" value="<?php echo $name; ?>">
+				<input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email" value="<?php echo $name; ?>" />
 				<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 			  </div>
 			  <div class="form-group" style="text-align:left">
 				<label for="inputPassword">Password</label>
-				<input type="password" class="form-control" id="inputPassword" placeholder="Password" value="<?php echo $password; ?>">
+				<input type="password" class="form-control" id="inputPassword" placeholder="Password" value="<?php echo $password; ?>" />
 			  </div>
 			  <div class="form-group" style="text-align:left">
 				<label for="inputName">Name</label>
-				<input type="text" class="form-control" id="inputName" placeholder="Ex: Jerry Smith" value="<?php echo $name; ?>">
+				<input type="text" class="form-control" id="inputName" placeholder="Ex: Jerry Smith" value="<?php echo $name; ?>" />
 			  </div>
 			  <div class="form-group" style="text-align:left">
 				<label for="inputGender">Sex assigned at birth</label>
@@ -179,15 +184,15 @@ if(isset($_POST["submit"]))
 			  </div>
 			  <div class="form-group" style="text-align:left">
 				<label for="inputAge">Age</label>
-				<input type="text" class="form-control" id="inputAge" placeholder="Ex: 19" value="<?php echo $Age; ?>">
+				<input type="text" class="form-control" id="inputAge" placeholder="Ex: 19" value="<?php echo $age; ?>" />
 			  </div>
 			  <div class="form-group" style="text-align:left">
 				<label for="inputHeight">Height (inches)</label>
-				<input type="text" class="form-control" id="inputHeight" placeholder="Ex: 72" value="<?php echo $height; ?>">
+				<input type="text" class="form-control" id="inputHeight" placeholder="Ex: 72" value="<?php echo $height; ?>" />
 			  </div>
 			  <div class="form-group" style="text-align:left">
 				<label for="inputWeight">Weight (pounds)</label>
-				<input type="text" class="form-control" id="inputWeight" placeholder="Ex: 150" value="<?php echo $weight; ?>">
+				<input type="text" class="form-control" id="inputWeight" placeholder="Ex: 150" value="<?php echo $weight; ?>" />
 			  </div>
 			  <div class="form-group" style="text-align:left">
 				<label for="inputDiet">Dietary Restriction</label>
